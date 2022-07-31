@@ -13,5 +13,6 @@ public class ArithmaticCalculations {
     public void Multiplication(integer x, integer y, integer m){
         integer z = x*y*m;
         system.debug(z);
+        //This is sth.
     }
 }
