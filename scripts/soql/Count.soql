@@ -1,0 +1,1 @@
+Select SUM(Amount), StageName FROM Opportunity WHERE IsClosed = FALSE GROUP BY StageName

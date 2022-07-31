@@ -1,0 +1,2 @@
+select id, name, Phone FROM Account 
+WHERE (Phone != NULL OR Website != NULL ) AND AccountNumber != NULL

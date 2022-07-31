@@ -1,0 +1,11 @@
+string x = MapDemo.retrieveMonth(1);
+system.debug(x);
+system.debug(MapDemo.retrieveMonth(1));
+system.debug(MapDemo.retrieveMonth(3));
+system.debug(MapDemo.retrieveMonth(5));
+system.debug(MapDemo.retrieveMonth(7));
+system.debug(MapDemo.retrieveMonth(9));
+system.debug(MapDemo.retrieveMonth(11));
+system.debug(MapDemo.retrieveMonth(12));
+system.debug(MapDemo.retrieveMonth(13));
+system.debug(MapDemo.retrieveMonth(15));

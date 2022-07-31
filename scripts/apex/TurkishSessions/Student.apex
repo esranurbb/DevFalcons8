@@ -1,0 +1,10 @@
+Student st1 = new Student();
+st1.firstName = 'Esranur';
+st1.lastName = 'Bozdemir';
+st1.className = '5B';
+st1.art = true;
+st1.sports = true;
+st1.mathGrade = 85;
+st1.scienceGrade = 95;
+st1.language = 'English';
+system.debug(st1);
