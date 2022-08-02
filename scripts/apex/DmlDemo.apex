@@ -5,3 +5,8 @@ DmlDemo.dmlDemo_2();
 DmlDemo.projectInsert();
 DmlDemo.dmlMultRec();
 DmlDemo.multRec2();
+
+DmlDemo.dmlMultRecordUpdate();
+
+
+delete [Select id From Account WHERE name Like '%too many%'];

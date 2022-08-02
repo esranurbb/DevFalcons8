@@ -84,4 +84,18 @@ public class DmlDemo {
         }
 
     }
+
+    public static void dmlMultRecordUpdate() {
+        List<Account> updatedAccounts = new List<Account>();
+        List<Account> listAcc = [Select id, Name from Account];
+        for (Account acc : listAcc) {
+            acc.Name = acc.Name + ' via B.0';
+            updatedAccounts.add(acc);
+        }
+        if(!updatedAccounts.isEmpty()){
+            update updatedAccounts;
+        }
+    }
+
+    
 }
