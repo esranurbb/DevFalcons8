@@ -72,7 +72,7 @@ public class DmlDemo {
         // acc.Active__c = 'Yes';
         // listAcc.add(acc);
 
-        for(integer i=1; i<200; i++){
+        for(integer i=1; i<6; i++){
             Account acc = new Account();
             acc.name = 'Too Many Accounts V'+i;
             acc.AccountNumber = 'ACC-1'+i;
