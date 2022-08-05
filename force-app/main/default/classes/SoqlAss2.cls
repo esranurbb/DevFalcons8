@@ -13,8 +13,8 @@ public class SoqlAss2 {
     }
 
     public static void avgMethodIndsutryMax() {
-        List<Account> maxEmply = [Select Industry, NumberOfEmployees from Account];
-        for (Account industries : maxEmply) {
+        List<AggregateResult> maxEmply = [Select Industry, MAX(NumberOfEmployees) from Account];
+        for (AggregateResult industries : maxEmply) {
             system.debug(industries);
         }
     }

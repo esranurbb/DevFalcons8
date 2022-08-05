@@ -9,4 +9,4 @@ DmlDemo.multRec2();
 DmlDemo.dmlMultRecordUpdate();
 
 
-delete [Select id From Account WHERE name Like '%too many%'];
+delete [Select name From Account WHERE name Like 'Too%'];
