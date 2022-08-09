@@ -1,22 +1,29 @@
 trigger ContactTrigger on Contact (before insert, after insert, before update, after update) {
-    if(Trigger.isBefore){
-        system.debug('Before trigger');
-        if(Trigger.isInsert){
-            system.debug('Before INSERT trigger');
-        }
-        if(Trigger.isUpdate){
-            system.debug('Before UPDATE trigger');
-        }
+    if(Trigger.isBefore && Trigger.isUpdate){
+        ContactTriggerHandler.contactUpdateValidation1(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+        ContactTriggerHandler.contactUpdateValidation2(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
     }
-    if(Trigger.isAfter){
-        system.debug('After trigger');
-        if(Trigger.isInsert){
-            system.debug('AFTER INSERT trigger');
-        }
-        if(Trigger.isUpdate){
-            system.debug('AFTER UPDATE trigger');
-        }
-    }
+}
+
+
+    // if(Trigger.isBefore){
+    //     system.debug('Before trigger');
+    //     if(Trigger.isInsert){
+    //         system.debug('Before INSERT trigger');
+    //     }
+    //     if(Trigger.isUpdate){
+    //         system.debug('Before UPDATE trigger');
+    //     }
+    // }
+    // if(Trigger.isAfter){
+    //     system.debug('After trigger');
+    //     if(Trigger.isInsert){
+    //         system.debug('AFTER INSERT trigger');
+    //     }
+    //     if(Trigger.isUpdate){
+    //         system.debug('AFTER UPDATE trigger');
+    //     }
+    // }
 
 
     // if(Trigger.isInsert){
@@ -39,4 +46,3 @@ trigger ContactTrigger on Contact (before insert, after insert, before update, a
     // }
 
 
-}

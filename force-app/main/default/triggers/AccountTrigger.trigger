@@ -1,19 +1,53 @@
 trigger AccountTrigger on Account (before insert, after insert, before update, after update) {
-
-    if(Trigger.isAfter && Trigger.isUpdate){
-        integer countWS = 0;
-        for (ID eachAccId : trigger.newMap.keySet()) {
-            string oldWeb = trigger.oldMap.get(eachAccId).Website;
-            Account newAcc = trigger.newMap.get(eachAccId);        
-        if(oldWeb!=newAcc.Website){
-            system.debug('The Account: ' + newAcc.Name + ', website is: ' + newAcc.website);
-            countWS++;
+        if(trigger.isBefore){
+            AccountTriggerHandler.updateAccountDescription(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
         }
+        }
+           
+
+
+
+            //     for(Account eachAcc : Trigger.new){
+        //         boolean updateDesc = false;
+        //         if(trigger.isInsert && eachAcc.Active__c == 'Yes'){
+        //             updateDesc = true;
+        //             // eachAcc.Description = 'This description was updated.';
+        //         }if(trigger.isUpdate){
+        //             if(eachAcc.Active__c=='Yes' && trigger.oldMap.get(eachAcc.Id).Active__c != trigger.newMap.get(eachAcc.Id).Active__c){
+        //                 updateDesc = true;
+        //                 // eachAcc.Description = 'Account is active, go to party.';
+        //             }
+        //         }
+        //         if(updateDesc)
+        //         eachAcc.Description = 'Account is active, go to party.';
+        //     }
+        // }
+
+
+    // if(Trigger.isAfter && Trigger.isUpdate){
+    //     for(Account eachAcc : trigger.new){
+    //         if(eachAcc.website != trigger.oldMap.get(eachAcc.id).website){
+    //             system.debug(eachAcc.Name + ' ' + eachAcc.website + ' old ws: ' + trigger.oldMap.get(eachAcc.id).website);
+    //         }
+    //     }
+    // }
+
+
+
+
+        //         integer countWS = 0;
+//         for (ID eachAccId : trigger.newMap.keySet()) {
+//             string oldWeb = trigger.oldMap.get(eachAccId).Website;
+//             Account newAcc = trigger.newMap.get(eachAccId);        
+//         if(oldWeb!=newAcc.Website){
+//             system.debug('The Account: ' + newAcc.Name + ', website is: ' + newAcc.website);
+//             countWS++;
+//         }
 
         
-    }
-    system.debug('Number of accounts website updated: ' + countWS);
-}
+//     }
+//     system.debug('Number of accounts website updated: ' + countWS);
+// }
 
 
 
@@ -136,7 +170,7 @@ trigger AccountTrigger on Account (before insert, after insert, before update, a
     //     }
     // }
     
-}
+
         // if(Trigger.isAfter){
         // system.debug('After trigger trigger.new = ' + newAccs);
 
