@@ -23,17 +23,37 @@ public class AccountTriggerHandler {
                                         List<Account> accTriggerOld, 
                                         Map<Id, Account> accTriggerNewMap, 
                                         Map<Id, Account> accTriggerOldMap) {
-        boolean VIP;
-        List<Account> listAcc = new List<Account>();
-        if(listAcc.VIP==true){
-            for(Account eachAcc : AccTriggerNew)
-            Contact updtCntct = new Contact();
-            updtCntct.VIP = true;
-        }
-        
 
+        Set<Id> accIDSet = new Set<Id>();
+        for(Account eachAcc : AccTriggerNew){
+            if(eachAcc.VIP__c != accTriggerOldMap.get(eachAcc.id).VIP__c){
+                accIDSet.add(eachAcc.id);
+            }                       
+        }
+        List<Contact> listContacts = [Select account.id, VIP__c from Contact WHERE Account.Id In :accIDSet];
+
+        for (Contact eachCon : listContacts) {
+            eachCon.VIP__c = accTriggerNewMap.get(eachCon.Account.id).VIP__c;
+        }
+        update listContacts;
     }
 
+
+    // public static void createNewAcc( List<Account> AccTriggerNew, 
+    //                                 List<Account> accTriggerOld, 
+    //                                 Map<Id, Account> accTriggerNewMap, 
+    //                                 Map<Id, Account> accTriggerOldMap) {
         
+    //     List<Account> accList = [Select id, name From Account];
+    //     if(accList.size() != 0){
+    //         for (Account acc : accList){
+    //             acc.name +='Updated';
+    //         }
+    //     update accList;    
+    //     }
+    //     else{
+    //         Account acc = new Account();
+    //         insert acc;
+    //     }                           
+    // }
 }
-    

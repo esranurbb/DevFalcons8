@@ -9,4 +9,4 @@ DmlDemo.multRec2();
 DmlDemo.dmlMultRecordUpdate();
 
 
-delete [Select name From Account WHERE name Like 'Too%'];
+delete [Select name From Account WHERE name Like '%Test%'];

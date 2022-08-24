@@ -12,8 +12,8 @@ public with sharing class SoqlDemo2 {
         accounts = [select Name, AnnualRevenue, (select Name, Amount from Opportunities Where StageName = 'Closed Won') from Account Where Type = 'Customer - Direct' ];
         for(Account eachAccount : accounts){
             system.debug(eachAccount.Name + ' ' + eachAccount);
-            // List<Opportunity> listOpp = eachAccount.Opportunities;
-            for(Opportunity opp : eachAccount.Opportunities){
+            List<Opportunity> listOpp = eachAccount.Opportunities;
+            for(Opportunity opp : listOpp){
                 system.debug('Opp name is ' + opp.Name + opp.Amount);
                 system.debug('-----------New Account-----------');
             }

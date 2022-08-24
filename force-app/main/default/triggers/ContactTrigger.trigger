@@ -1,8 +1,33 @@
-trigger ContactTrigger on Contact (before insert, after insert, before update, after update) {
-    if(Trigger.isBefore && Trigger.isUpdate){
-        ContactTriggerHandler.contactUpdateValidation1(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
-        ContactTriggerHandler.contactUpdateValidation2(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+trigger ContactTrigger on Contact (before insert, before update, after insert, after update, after delete, after undelete) {
+
+    if(Trigger.isAfter){
+        set<id> accIDs = new Set<Id>();
+
+        if(trigger.isInsert || trigger.isUpdate || trigger.isUndelete){
+            for (Contact eachContact : trigger.new) {
+                if(eachContact.AccountId != null){
+                    accIds.add(eachContact.Accountid);
+                }
+            }
+        }
+
+        if(trigger.isUpdate || trigger.isDelete){
+            for (Contact eachContact : trigger.old) {
+                if(eachContact.AccountId != null){
+                    accIds.add(eachContact.AccountId);
+                }
+            }
+        }
+        ContactTriggerHandler.countOfAccContacts(accIds);
     }
+
+
+
+
+    // if(Trigger.isBefore && Trigger.isUpdate){
+    //     ContactTriggerHandler.contactUpdateValidation1(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    //     ContactTriggerHandler.contactUpdateValidation2(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    // }
 }
 
 

@@ -13,6 +13,17 @@ public class DmlDemo {
         insert sp;        
     }
 
+    public static void dmlInsertRelatedDemo_1() {
+        //1. fetch account record
+        account acc = [select id, name from account where name = 'SoftInnovas Inc.' limit 1];
+ 
+        //2. create contact's instance
+        Contact c = new Contact();
+        c.LastName = 'Biden';
+        c.AccountId = acc.Id;
+        insert c;
+    }
+
     public static void dmlUpdateDemo_3(){
         Account acc = [Select Id, Name from Account WHERE Name = 'Little Cake Design'];
         acc.Name = 'Little Cake Design';
@@ -79,6 +90,7 @@ public class DmlDemo {
             acc.Active__c = 'Yes';
             listAcc.add(acc);
         }
+        system.debug(listAccount.size);
         if(!listAcc.isEmpty()){
             insert listAcc;
         }

@@ -13,8 +13,9 @@ public class Calculator {
         system.debug(area);
     }
 
-    public static void printAndReturnMessage(string xyz){
-        system.debug(xyz + '...OK Cool');
+    public static string printAndReturnMessage(string xyz){
+        string str1 = xyz + '...OK Cool';
+        return str1;
     }
 
     public static string stringReturnType(string msg){

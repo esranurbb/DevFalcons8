@@ -1,8 +1,25 @@
 trigger AccountTrigger on Account (before insert, after insert, before update, after update) {
-        if(trigger.isBefore){
-            AccountTriggerHandler.updateAccountDescription(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
-        }
-        }
+// if(Trigger.isInsert)
+// AccountTriggerHandler.createNewAcc(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+
+    if(trigger.isAfter && trigger.isUpdate)
+    AccountTriggerHandler.updateContactsVIP(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+
+    if(Trigger.isAfter && Trigger.isInsert){
+    List<Account> accs = [Select Id, Name From Account];
+    AccountQueueableExample aq = new AccountQueueableExample(Trigger.New);
+    ID jobId = system.enqueueJob(aq);
+    system.debug('Job Id is ---- ' + jobId);
+    }
+
+    //     if(Trigger.isAfter && Trigger.isInsert)
+    //     ContactHandler_Assg.createContact(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    // }   
+    if(trigger.isBefore){
+    AccountTriggerHandler.updateAccountDescription(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
+    }
+}
+        // }
            
 
 
@@ -205,4 +222,3 @@ trigger AccountTrigger on Account (before insert, after insert, before update, a
     // if(Trigger.isAfter){
     //     system.debug('After INSERT trigger called.');
     // }
-    
