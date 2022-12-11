@@ -21,7 +21,7 @@ public with sharing class AccountBatchTest {
             a3.Industry = 'Energy';
             a3.Type = 'Customer - Direct';
             listAcc.add(a3);
-            
+            system.debug(a3);        
         }
         insert listAcc;
 
